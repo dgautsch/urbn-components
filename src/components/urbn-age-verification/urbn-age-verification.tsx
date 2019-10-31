@@ -1,4 +1,4 @@
-import { Component, Prop, h, Watch } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'urbn-age-verification',
@@ -11,14 +11,6 @@ export class UrbnAgeVerification {
   @Prop() months: Array<string>;
   @Prop() minimumAge: number;
 
-  @Watch('months')
-  watchHandler(newValue, oldValue) {
-    this.months = [
-      ...oldValue,
-      ...newValue
-    ]
-  }
-
   generateDays() {
     let i = 1;
     let days = [];
@@ -29,7 +21,7 @@ export class UrbnAgeVerification {
     return days;
   }
 
-  generateYears(minAge) {
+  generateYears(minAge:number) {
     const today = new Date();
     const year = today.getFullYear();
     const maxYear = Math.floor(year - minAge);
