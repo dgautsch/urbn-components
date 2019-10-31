@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/urbncomponents.esm.js"></script>
+  <script nomodule src="/build/urbncomponents.js"></script>
+
+</head>
+<body>
+
+  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+
+  <urbn-age-verification minimum-age="16" checkbox-only="false"></urbn-age-verification>
+  <script>
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ]
+    document.querySelector('urbn-age-verification').months = months;
+  </script>
+
+</body>
+</html>
