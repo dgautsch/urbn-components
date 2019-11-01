@@ -7,13 +7,38 @@ import { Component, Prop, h } from '@stencil/core';
 })
 
 export class UrbnAgeVerification {
+
+  /**
+   * If `true`, the checkbox form will present, hiding the age dropdowns.
+   */
   @Prop() checkboxOnly: boolean;
-  @Prop() months: Array<string>;
+
+  /**
+   * Allows a translated list of dates to be passed into the component.
+   */
+  @Prop() months?: Array<string> = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+
+  /**
+   * Minimum age that determines which years are available in the form.
+   */
   @Prop() minimumAge: number;
 
-  generateDays() {
-    let i = 1;
-    let days = [];
+  generateDays():Array<number> {
+    let i:number = 1;
+    let days:Array<number> = [];
     while (i <= 31) {
       days.push(i);
       i++
@@ -21,7 +46,7 @@ export class UrbnAgeVerification {
     return days;
   }
 
-  generateYears(minAge:number) {
+  generateYears(minAge:number):Array<number> {
     const today = new Date();
     const year = today.getFullYear();
     const maxYear = Math.floor(year - minAge);
@@ -36,8 +61,8 @@ export class UrbnAgeVerification {
     return years;
   }
 
-  createSelectOptions(data:Array<string>) {
-    return data.map((value:string, index:number) => {
+  createSelectOptions(data:Array<number|string>) {
+    return data.map((value:number|string, index:number) => {
       return <option key={index} value={value}>{value}</option>
     })
   }

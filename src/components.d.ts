@@ -11,9 +11,18 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface UrbnAgeVerification {
+    /**
+    * If `true`, the checkbox form will present, hiding the age dropdowns.
+    */
     'checkboxOnly': boolean;
+    /**
+    * Minimum age that determines which years are available in the form.
+    */
     'minimumAge': number;
-    'months': Array<string>;
+    /**
+    * Allows a translated list of dates to be passed into the component.
+    */
+    'months'?: Array<string>;
   }
 }
 
@@ -32,8 +41,17 @@ declare global {
 
 declare namespace LocalJSX {
   interface UrbnAgeVerification {
+    /**
+    * If `true`, the checkbox form will present, hiding the age dropdowns.
+    */
     'checkboxOnly'?: boolean;
+    /**
+    * Minimum age that determines which years are available in the form.
+    */
     'minimumAge'?: number;
+    /**
+    * Allows a translated list of dates to be passed into the component.
+    */
     'months'?: Array<string>;
   }
 
