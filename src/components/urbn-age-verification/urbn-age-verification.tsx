@@ -36,7 +36,7 @@ export class UrbnAgeVerification {
     return years;
   }
 
-  createOptions(data:Array<string>) {
+  createSelectOptions(data:Array<string>) {
     return data.map((value:string, index:number) => {
       return <option key={index} value={value}>{value}</option>
     })
@@ -59,15 +59,15 @@ export class UrbnAgeVerification {
           <legend>Birth Date:</legend>
           <label htmlFor="urbn-birth-month">Month</label>
           <select name="month" id="urbn-birth-month">
-            { this.createOptions(this.months) }
+            { this.createSelectOptions(this.months) }
           </select>
           <label htmlFor="urbn-birth-day">Day</label>
           <select name="day" id="urbn-birth-day">
-            { this.createOptions(this.generateDays()) }
+            { this.createSelectOptions(this.generateDays()) }
           </select>
           <label htmlFor="urbn-birth-year">Year</label>
           <select name="year" id="urbn-birth-year">
-            { this.createOptions(this.generateYears(this.minimumAge)) }
+            { this.createSelectOptions(this.generateYears(this.minimumAge)) }
           </select>
         </fieldset>
       )
