@@ -14,11 +14,11 @@ export namespace Components {
     /**
     * If `true`, the checkbox form will present, hiding the age dropdowns.
     */
-    'checkboxOnly': boolean;
+    'checkboxOnly'?: boolean;
     /**
     * Minimum age that determines which years are available in the form.
     */
-    'minimumAge': number;
+    'minimumAge'?: number;
     /**
     * Allows a translated list of dates to be passed into the component.
     */

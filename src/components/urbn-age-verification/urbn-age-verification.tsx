@@ -11,7 +11,7 @@ export class UrbnAgeVerification {
   /**
    * If `true`, the checkbox form will present, hiding the age dropdowns.
    */
-  @Prop() checkboxOnly: boolean;
+  @Prop() checkboxOnly?: boolean = false;
 
   /**
    * Allows a translated list of dates to be passed into the component.
@@ -34,7 +34,7 @@ export class UrbnAgeVerification {
   /**
    * Minimum age that determines which years are available in the form.
    */
-  @Prop() minimumAge: number;
+  @Prop() minimumAge?: number = 0;
 
   generateDays():Array<number> {
     let i:number = 1;
