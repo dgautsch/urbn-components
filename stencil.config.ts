@@ -9,11 +9,11 @@ export const config: Config = {
       esmLoaderPath: '../loader'
     },
     {
-      type: 'docs-readme'
+      type: 'docs-readme',
+      strict:true
     },
     {
-      type: 'www',
-      serviceWorker: null // disable service workers
+      type: 'dist-hydrate-script'
     }
   ],
   plugins: [
