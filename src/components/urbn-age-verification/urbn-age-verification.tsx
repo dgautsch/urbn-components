@@ -36,7 +36,7 @@ export class UrbnAgeVerification {
    */
   @Prop() minimumAge?: number = 0;
 
-  generateDays():Array<number> {
+  private generateDays():Array<number> {
     let i:number = 1;
     let days:Array<number> = [];
     while (i <= 31) {
@@ -46,7 +46,7 @@ export class UrbnAgeVerification {
     return days;
   }
 
-  generateYears(minAge:number):Array<number> {
+  private generateYears(minAge:number):Array<number> {
     const today = new Date();
     const year = today.getFullYear();
     const maxYear = Math.floor(year - minAge);
@@ -61,7 +61,7 @@ export class UrbnAgeVerification {
     return years;
   }
 
-  createSelectOptions(data:Array<number|string>, defaultValue:String) {
+  private createSelectOptions(data:Array<number|string>, defaultValue:String) {
     let options = [];
 
     if (defaultValue) {
@@ -73,13 +73,13 @@ export class UrbnAgeVerification {
     }));
   }
 
-  renderComponentType() {
+  private renderComponentType() {
     if (this.checkboxOnly) {
       return (
         <fieldset>
           <legend class="c-form__legend">Confirm Age:</legend>
-          <label htmlFor="urbn-confirm-age">
-            <input type="checkbox" name="ageConfirmed" id="urbn-confirm-age"/>
+          <label class="c-form__input">
+            <input type="checkbox" name="ageConfirmed" id="urbn-confirm-age" />
             I verify I am at least {this.minimumAge} years old.
           </label>
         </fieldset>
