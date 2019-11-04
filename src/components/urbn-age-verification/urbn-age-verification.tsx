@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'urbn-age-verification',
@@ -7,6 +7,14 @@ import { Component, Prop, h } from '@stencil/core';
 })
 
 export class UrbnAgeVerification {
+  /**
+   * Refs
+   */
+  private ageConfirmedInput?: HTMLInputElement;
+
+  constructor() {
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   /**
    * If `true`, the checkbox form will present, hiding the age dropdowns.
@@ -35,6 +43,15 @@ export class UrbnAgeVerification {
    * Minimum age that determines which years are available in the form.
    */
   @Prop() minimumAge?: number = 0;
+
+  /**
+   * The value of the form
+   */
+  @State() value: boolean;
+
+  handleChange(_event: Event) {
+    this.value = this.ageConfirmedInput.checked;
+  }
 
   private generateDays():Array<number> {
     let i:number = 1;
@@ -79,7 +96,12 @@ export class UrbnAgeVerification {
         <fieldset>
           <legend class="c-form__legend">Confirm Age:</legend>
           <label class="c-form__input">
-            <input type="checkbox" name="ageConfirmed" id="urbn-confirm-age" />
+            <input
+              id="urbn-confirm-age"
+              type="checkbox"
+              name="ageConfirmed"
+              onChange={this.handleChange}
+              ref={el => this.ageConfirmedInput = el as HTMLInputElement} />
             I verify I am at least {this.minimumAge} years old.
           </label>
         </fieldset>
@@ -106,6 +128,12 @@ export class UrbnAgeVerification {
         </fieldset>
       )
     }
+  }
+
+  @Watch('value')
+  componentWillUpdate(newValue, oldValue, watchedValue) {
+    console.log('Component Updating')
+    console.log(newValue, oldValue, watchedValue);
   }
 
   render() {
