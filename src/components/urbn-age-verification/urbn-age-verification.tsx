@@ -110,7 +110,7 @@ export class UrbnAgeVerification {
 
   render() {
     return (
-        <div class="c-urbn-age-verification">
+        <div class={`c-urbn-age-verification ${this.checkboxOnly ? 'checkbox-view' : ''}`}>
           { this.renderComponentType() }
         </div>
     );
