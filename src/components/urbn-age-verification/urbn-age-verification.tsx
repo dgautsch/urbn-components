@@ -2,7 +2,7 @@ import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'urbn-age-verification',
-  styleUrl: 'urbn-age-verification.css',
+  styleUrl: 'urbn-age-verification.scss',
   shadow: true
 })
 
@@ -61,17 +61,23 @@ export class UrbnAgeVerification {
     return years;
   }
 
-  createSelectOptions(data:Array<number|string>) {
-    return data.map((value:number|string, index:number) => {
-      return <option key={index} value={value}>{value}</option>
-    })
+  createSelectOptions(data:Array<number|string>, defaultValue:String) {
+    let options = [];
+
+    if (defaultValue) {
+      options.push(<option key="0">{defaultValue}</option>);
+    }
+
+    return options.concat(data.map((value:number|string, index:number) => {
+      return <option key={index+1} value={value}>{value}</option>
+    }));
   }
 
   renderComponentType() {
     if (this.checkboxOnly) {
       return (
         <fieldset>
-          <legend>Confirm Age:</legend>
+          <legend class="c-form__legend">Confirm Age:</legend>
           <label htmlFor="urbn-confirm-age">
             <input type="checkbox" name="ageConfirmed" id="urbn-confirm-age"/>
             I verify I am at least {this.minimumAge} years old.
@@ -81,19 +87,22 @@ export class UrbnAgeVerification {
     } else {
       return (
         <fieldset>
-          <legend>Birth Date:</legend>
-          <label htmlFor="urbn-birth-month">Month</label>
-          <select name="month" id="urbn-birth-month">
-            { this.createSelectOptions(this.months) }
-          </select>
-          <label htmlFor="urbn-birth-day">Day</label>
-          <select name="day" id="urbn-birth-day">
-            { this.createSelectOptions(this.generateDays()) }
-          </select>
-          <label htmlFor="urbn-birth-year">Year</label>
-          <select name="year" id="urbn-birth-year">
-            { this.createSelectOptions(this.generateYears(this.minimumAge)) }
-          </select>
+          <legend class="c-form__legend">Birth Date:</legend>
+          <div class="o-column column-50">
+            <select name="month" id="urbn-birth-month" class="c-form__select" aria-label="Birth month">
+              { this.createSelectOptions(this.months, 'Month') }
+            </select>
+          </div>
+          <div class="o-column column-25">
+            <select name="day" id="urbn-birth-day" class="c-form__select" aria-label="Birth day">
+              { this.createSelectOptions(this.generateDays(), 'Day') }
+            </select>
+          </div>
+          <div class="o-column column-25 no-gutter">
+            <select name="year" id="urbn-birth-year" class="c-form__select" aria-label="Birth year">
+              { this.createSelectOptions(this.generateYears(this.minimumAge), 'Year') }
+            </select>
+          </div>
         </fieldset>
       )
     }
