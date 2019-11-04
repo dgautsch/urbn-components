@@ -3,6 +3,7 @@ import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'urbncomponents',
+  globalStyle: 'src/global/_index.scss',
   outputTargets: [
     {
       type: 'dist',
