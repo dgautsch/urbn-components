@@ -10,7 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface UrbnAgeVerification {
+  interface UcAgeVerification {
     /**
     * If `true`, the checkbox form will present, hiding the age dropdowns.
     */
@@ -29,18 +29,18 @@ export namespace Components {
 declare global {
 
 
-  interface HTMLUrbnAgeVerificationElement extends Components.UrbnAgeVerification, HTMLStencilElement {}
-  var HTMLUrbnAgeVerificationElement: {
-    prototype: HTMLUrbnAgeVerificationElement;
-    new (): HTMLUrbnAgeVerificationElement;
+  interface HTMLUcAgeVerificationElement extends Components.UcAgeVerification, HTMLStencilElement {}
+  var HTMLUcAgeVerificationElement: {
+    prototype: HTMLUcAgeVerificationElement;
+    new (): HTMLUcAgeVerificationElement;
   };
   interface HTMLElementTagNameMap {
-    'urbn-age-verification': HTMLUrbnAgeVerificationElement;
+    'uc-age-verification': HTMLUcAgeVerificationElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface UrbnAgeVerification {
+  interface UcAgeVerification {
     /**
     * If `true`, the checkbox form will present, hiding the age dropdowns.
     */
@@ -56,7 +56,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
-    'urbn-age-verification': UrbnAgeVerification;
+    'uc-age-verification': UcAgeVerification;
   }
 }
 
@@ -66,7 +66,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
-      'urbn-age-verification': LocalJSX.UrbnAgeVerification & JSXBase.HTMLAttributes<HTMLUrbnAgeVerificationElement>;
+      'uc-age-verification': LocalJSX.UcAgeVerification & JSXBase.HTMLAttributes<HTMLUcAgeVerificationElement>;
     }
   }
 }

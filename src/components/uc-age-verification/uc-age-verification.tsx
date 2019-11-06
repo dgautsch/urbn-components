@@ -1,12 +1,12 @@
 import { Component, Prop, h, State, Watch } from '@stencil/core';
 
 @Component({
-  tag: 'urbn-age-verification',
-  styleUrl: 'urbn-age-verification.scss',
+  tag: 'uc-age-verification',
+  styleUrl: 'uc-age-verification.scss',
   shadow: true
 })
 
-export class UrbnAgeVerification {
+export class UcAgeVerification {
   /**
    * Refs
    */
