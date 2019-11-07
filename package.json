@@ -19,7 +19,6 @@
     "build": "stencil build --docs",
     "build:prerender": "stencil build --prerender",
     "generate": "stencil generate",
-    "postinstall": "npm run build",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
