@@ -12,22 +12,24 @@
   "unpkg": "dist/urbncomponents/urbncomponents.js",
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "hydrate/"
   ],
   "scripts": {
     "build": "stencil build --docs",
     "build:prerender": "stencil build --prerender",
     "generate": "stencil generate",
-    "postinstall": "npm install && npm run build",
+    "postinstall": "npm run build",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "devDependencies": {
-    "@stencil/core": "1.7.5",
-    "@stencil/sass": "1.1.1",
     "@types/jest": "24.0.21"
   },
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "@stencil/core": "1.7.5",
+    "@stencil/sass": "1.1.1"
+  }
 }
