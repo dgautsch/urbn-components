@@ -3,7 +3,7 @@ import { Component, Prop, h, State, Watch } from '@stencil/core';
 @Component({
   tag: 'uc-age-verification',
   styleUrl: 'uc-age-verification.scss',
-  shadow: true
+  shadow: false
 })
 
 export class UcAgeVerification {
