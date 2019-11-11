@@ -23,6 +23,10 @@ export namespace Components {
     * Allows a translated list of dates to be passed into the component.
     */
     'months'?: Array<string>;
+    /**
+    * The value of the form. Date or Boolean
+    */
+    'value'?: string | boolean;
   }
 }
 
@@ -53,6 +57,14 @@ declare namespace LocalJSX {
     * Allows a translated list of dates to be passed into the component.
     */
     'months'?: Array<string>;
+    /**
+    * Emits the selected value of the component
+    */
+    'onValueSelected'?: (event: CustomEvent<any>) => void;
+    /**
+    * The value of the form. Date or Boolean
+    */
+    'value'?: string | boolean;
   }
 
   interface IntrinsicElements {

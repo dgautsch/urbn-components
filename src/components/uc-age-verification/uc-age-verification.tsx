@@ -1,4 +1,11 @@
-import { Component, Prop, h, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Prop,
+  Watch
+} from '@stencil/core';
 
 @Component({
   tag: 'uc-age-verification',
@@ -11,10 +18,18 @@ export class UcAgeVerification {
    * Refs
    */
   private ageConfirmedInput?: HTMLInputElement;
+  private daySelect?: HTMLSelectElement;
+  private monthSelect?: HTMLSelectElement;
+  private yearSelect?: HTMLSelectElement;
 
   constructor() {
     this.handleChange = this.handleChange.bind(this);
   }
+
+  /**
+   * The value of the form. Date or Boolean
+   */
+  @Prop() value?: string | boolean = '';
 
   /**
    * If `true`, the checkbox form will present, hiding the age dropdowns.
@@ -44,13 +59,23 @@ export class UcAgeVerification {
    */
   @Prop() minimumAge?: number = 0;
 
+
   /**
-   * The value of the form
+   * Emits the selected value of the component
    */
-  @State() value: boolean;
+  @Event() valueSelected: EventEmitter;
+
+  valueSelectedHandler(value) {
+    this.valueSelected.emit(value);
+  }
 
   handleChange(_event: Event) {
-    this.value = this.ageConfirmedInput.checked;
+    if (this.checkboxOnly) {
+      this.value = this.ageConfirmedInput.checked
+    } else {
+      this.value = `${this.daySelect.value}/${this.monthSelect.value}/${this.yearSelect.value}`
+      this.valueSelectedHandler(this.value);
+    }
   }
 
   private generateDays():Array<number> {
@@ -82,7 +107,7 @@ export class UcAgeVerification {
     let options = [];
 
     if (defaultValue) {
-      options.push(<option key="0">{defaultValue}</option>);
+      options.push(<option key="0" value="" disabled selected>{defaultValue}</option>);
     }
 
     return options.concat(data.map((value:number|string, index:number) => {
@@ -110,21 +135,43 @@ export class UcAgeVerification {
       return (
         <fieldset>
           <legend class="c-form__legend">Birth Date:</legend>
-          <div class="o-column column-50">
-            <select name="month" id="urbn-birth-month" class="c-form__select" aria-label="Birth month">
+          <div class="uc-column uc-column-50">
+            <select
+              name="month"
+              id="urbn-birth-month"
+              class="c-form__select"
+              aria-label="Birth month"
+              onChange={this.handleChange}
+              ref={el => this.monthSelect = el as HTMLSelectElement}
+              required>
               { this.createSelectOptions(this.months, 'Month') }
             </select>
           </div>
-          <div class="o-column column-25">
-            <select name="day" id="urbn-birth-day" class="c-form__select" aria-label="Birth day">
+          <div class="uc-column uc-column-25">
+            <select
+              name="day"
+              id="urbn-birth-day"
+              class="c-form__select"
+              aria-label="Birth day"
+              onChange={this.handleChange}
+              ref={el => this.daySelect = el as HTMLSelectElement}
+              required>
               { this.createSelectOptions(this.generateDays(), 'Day') }
             </select>
           </div>
-          <div class="o-column column-25 no-gutter">
-            <select name="year" id="urbn-birth-year" class="c-form__select" aria-label="Birth year">
+          <div class="uc-column uc-column-25 no-gutter">
+            <select
+              name="year"
+              id="urbn-birth-year"
+              class="c-form__select"
+              aria-label="Birth year"
+              onChange={this.handleChange}
+              ref={el => this.yearSelect = el as HTMLSelectElement}
+              required>
               { this.createSelectOptions(this.generateYears(this.minimumAge), 'Year') }
             </select>
           </div>
+          Value: { this.value }
         </fieldset>
       )
     }
