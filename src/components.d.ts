@@ -28,6 +28,7 @@ export namespace Components {
     */
     'value'?: string | boolean;
   }
+  interface UcText {}
 }
 
 declare global {
@@ -38,8 +39,15 @@ declare global {
     prototype: HTMLUcAgeVerificationElement;
     new (): HTMLUcAgeVerificationElement;
   };
+
+  interface HTMLUcTextElement extends Components.UcText, HTMLStencilElement {}
+  var HTMLUcTextElement: {
+    prototype: HTMLUcTextElement;
+    new (): HTMLUcTextElement;
+  };
   interface HTMLElementTagNameMap {
     'uc-age-verification': HTMLUcAgeVerificationElement;
+    'uc-text': HTMLUcTextElement;
   }
 }
 
@@ -66,9 +74,11 @@ declare namespace LocalJSX {
     */
     'value'?: string | boolean;
   }
+  interface UcText {}
 
   interface IntrinsicElements {
     'uc-age-verification': UcAgeVerification;
+    'uc-text': UcText;
   }
 }
 
@@ -79,6 +89,7 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'uc-age-verification': LocalJSX.UcAgeVerification & JSXBase.HTMLAttributes<HTMLUcAgeVerificationElement>;
+      'uc-text': LocalJSX.UcText & JSXBase.HTMLAttributes<HTMLUcTextElement>;
     }
   }
 }

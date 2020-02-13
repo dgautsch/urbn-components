@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event           | Description | Type               |
-| --------------- | ----------- | ------------------ |
-| `valueSelected` |             | `CustomEvent<any>` |
+| Event           | Description                               | Type               |
+| --------------- | ----------------------------------------- | ------------------ |
+| `valueSelected` | Emits the selected value of the component | `CustomEvent<any>` |
 
 
 ----------------------------------------------
